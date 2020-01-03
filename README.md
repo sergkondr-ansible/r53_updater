@@ -1,5 +1,7 @@
 # r53_updater
 
+Update Route 53 record after startup
+
 ### Example
 ```
 r53_updater_zone_id: "ZZS9VFIK1231"
