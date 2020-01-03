@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PUBLIC_IP=$(curl -s ifconfig.me)
+
+sed "s/PUBLIC_IP/$PUBLIC_IP/g" {{ r53_updater_script_path }}/{{ r53_updater_payload_file }} > /tmp/payload.json
+
+aws route53 change-resource-record-sets \
+    --hosted-zone-id {{ r53_updater_zone_id }} \
+    --change-batch file:///tmp/payload.json \
+ >> /var/log/r53_updater.log
+
+rm /tmp/payload.json

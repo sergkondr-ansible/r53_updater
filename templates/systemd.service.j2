@@ -1,0 +1,9 @@
+[Unit]
+Description=Update Route 53 record
+
+[Service]
+Type=oneshot
+ExecStart={{ r53_updater_script_path }}/r53_updater.sh
+
+[Install]
+WantedBy=multi-user.target

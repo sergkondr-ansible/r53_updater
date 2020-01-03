@@ -1,0 +1,10 @@
+---
+
+r53_updater_startup_path: "/etc/systemd/system"
+r53_updater_script_path: "/root/scripts"
+r53_updater_payload_file: "r53_updater_payload.json"
+
+r53_updater_profile_name: "default"
+r53_updater_credentials_path: "/root/.aws"
+r53_updater_aws_key_id: ""
+r53_updater_aws_secret_key: ""

@@ -1,0 +1,50 @@
+---
+
+- name: Install aws cli
+  apt:
+    name: awscli
+    state: present
+
+- name: Create aws cli credentials folder
+  file:
+    path: "{{ r53_updater_credentials_path }}"
+    state: directory
+
+- name: Create credentials file
+  template:
+    src: credentials.j2
+    dest: "{{ r53_updater_credentials_path }}/credentials"
+    mode: 0644
+
+- name: Create scripts dir
+  file:
+    path: "{{ r53_updater_script_path }}"
+    state: directory
+    mode: 0755
+    owner: root
+
+- name: Create payload template
+  template:
+    src: payload.json.j2
+    dest: "{{ r53_updater_script_path }}/{{ r53_updater_payload_file }}"
+    mode: 0644
+
+- name: Create startup script
+  template:
+    src: startupjob.j2
+    dest: "{{ r53_updater_script_path }}/r53_updater.sh"
+    mode: 0755
+    owner: root
+
+- name: Create systemd oneshot-service
+  template:
+    src: systemd.service.j2
+    dest: "{{ r53_updater_startup_path }}/r53_updater.service"
+    mode: 0755
+    owner: root
+
+- name: Enable service r53_updater
+  systemd:
+    name: r53_updater
+    daemon_reload: yes
+    enabled: yes

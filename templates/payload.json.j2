@@ -1,0 +1,14 @@
+{
+  "Comment": "update a record ",
+  "Changes": [{
+    "Action": "UPSERT",
+    "ResourceRecordSet": {
+      "Name": "{{ r53_updater_record }}",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [{
+        "Value": "PUBLIC_IP"
+      }]
+    }
+  }]
+}
