@@ -1,0 +1,11 @@
+---
+
+galaxy_info:
+  author: Sergey Kondrashov <s@kondrashov.me>
+  description: "Update Route 53 record after startup"
+  min_ansible_version: 2.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
